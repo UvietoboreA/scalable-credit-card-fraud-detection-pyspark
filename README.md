@@ -1,10 +1,10 @@
-# 🚨 Scalable Credit Card Fraud Detection Using PySpark
+# Scalable Credit Card Fraud Detection Using PySpark
 
 Distributed machine learning pipeline for fraud detection using PySpark, Spark MLlib, and HDFS, designed for scalable processing of highly imbalanced financial transaction data.
 
 ---
 
-# 📌 Project Overview
+# Project Overview
 
 This project implements a scalable fraud detection pipeline using **Apache Spark (PySpark)** and **Hadoop Distributed File System (HDFS)** to identify fraudulent financial transactions within a highly imbalanced dataset.
 
@@ -20,7 +20,7 @@ The workflow demonstrates:
 
 ---
 
-# 🎯 Business Problem
+# Business Problem
 
 Financial institutions process millions of transactions daily, making fraud detection a significant operational and financial challenge.
 
@@ -40,7 +40,7 @@ The objective is to:
 
 ---
 
-# 📂 Dataset
+# Dataset
 
 **Source:** Credit Card Fraud Detection Dataset — Kaggle  
 Dataset Link: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
@@ -57,7 +57,7 @@ Dataset Link: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
 ---
 
-# 🛠 Technologies Used
+# Technologies Used
 
 ## Big Data & Distributed Systems
 - Apache Spark
@@ -78,7 +78,7 @@ Dataset Link: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 
 ---
 
-# 🧹 Data Engineering & Preprocessing
+# Data Engineering & Preprocessing
 
 The pipeline includes:
 - Distributed dataset loading from HDFS
@@ -93,7 +93,7 @@ The pipeline includes:
 
 ---
 
-# 🤖 Machine Learning Models
+# Machine Learning Models
 
 The following models were trained and evaluated using Spark MLlib:
 
@@ -111,7 +111,7 @@ The following models were trained and evaluated using Spark MLlib:
 
 ---
 
-# 📈 Evaluation Strategy
+# Evaluation Strategy
 
 Because fraud detection is highly imbalanced, accuracy alone was not considered reliable.
 
@@ -136,7 +136,7 @@ This evaluation strategy better reflects real-world fraud detection trade-offs.
 
 ---
 
-# 🏆 Key Results
+# Key Results
 
 ## Key Findings
 - Ensemble models significantly outperformed baseline Logistic Regression
@@ -148,7 +148,7 @@ This evaluation strategy better reflects real-world fraud detection trade-offs.
 
 ---
 
-# 🔍 Feature Insights
+# Feature Insights
 
 Important fraud-related signals included:
 - Transaction amount behaviour
@@ -159,7 +159,7 @@ Feature importance analysis and Logistic Regression coefficient analysis were ex
 
 ---
 
-# ⚡ Scalability & Distributed Architecture
+# Scalability & Distributed Architecture
 
 This project was designed with scalability in mind.
 
@@ -172,7 +172,7 @@ This architecture enables the pipeline to scale beyond local-memory limitations 
 
 ---
 
-# 📁 Project Structure
+# Project Structure
 
 ```bash
 fraud_detection_project/
@@ -189,7 +189,7 @@ fraud_detection_project/
 
 ---
 
-# ▶️ Running the Project
+# Running the Project
 
 ## Upload Dataset to HDFS
 
@@ -215,7 +215,7 @@ The notebook can also be executed within a configured JupyterHub PySpark environ
 
 ---
 
-# 📤 Outputs
+# Outputs
 
 ## HDFS Outputs
 Predictions saved to:
@@ -231,7 +231,7 @@ hdfs:///user/jadju001/fraud_detection/output/
 
 ---
 
-# ⚠️ Limitations
+# Limitations
 
 - Severe class imbalance remains challenging
 - Threshold tuning introduces operational trade-offs
@@ -240,7 +240,7 @@ hdfs:///user/jadju001/fraud_detection/output/
 
 ---
 
-# 🚀 Future Improvements
+# Future Improvements
 
 Potential extensions include:
 - Real-time fraud detection with Spark Streaming
@@ -251,7 +251,7 @@ Potential extensions include:
 
 ---
 
-# 🧠 Business Impact
+# Business Impact
 
 This project demonstrates how distributed machine learning systems can support:
 - Fraud risk reduction
@@ -263,7 +263,7 @@ It also highlights the importance of aligning machine learning evaluation with r
 
 ---
 
-# 👤 Author
+# Author
 
 **Uvietobore Joshua Adjugah**  
 MSc Data Science & Artificial Intelligence  
