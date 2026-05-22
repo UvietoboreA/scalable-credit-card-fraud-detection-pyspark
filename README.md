@@ -1,44 +1,180 @@
-README.md
+# 🚨 Scalable Credit Card Fraud Detection Using PySpark
 
-# Scalable Credit Card Fraud Detection Using PySpark
-
-## Overview
-
-This project implements a scalable credit card fraud detection system using Apache Spark (PySpark) and Hadoop Distributed File System (HDFS). The goal is to detect fraudulent transactions in a highly imbalanced dataset using distributed machine learning techniques.
-
-The implementation demonstrates how big data technologies can be used to efficiently process and analyse transactional data in a cluster environment, while maintaining scalability for larger datasets.
+Distributed machine learning pipeline for fraud detection using PySpark, Spark MLlib, and HDFS, designed for scalable processing of highly imbalanced financial transaction data.
 
 ---
 
-## Dataset
+# 📌 Project Overview
 
-The dataset used is the Credit Card Fraud Detection dataset, available on Kaggle:
+This project implements a scalable fraud detection pipeline using **Apache Spark (PySpark)** and **Hadoop Distributed File System (HDFS)** to identify fraudulent financial transactions within a highly imbalanced dataset.
 
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+The project focuses not only on predictive performance, but also on the practical challenges of building machine learning systems capable of handling large-scale transactional data efficiently in distributed environments.
 
-### Dataset Characteristics
+The workflow demonstrates:
+- Distributed data processing
+- Scalable machine learning
+- Imbalanced classification handling
+- Threshold optimisation
+- Fraud-focused evaluation strategies
+- Production-oriented big data architecture
 
+---
+
+# 🎯 Business Problem
+
+Financial institutions process millions of transactions daily, making fraud detection a significant operational and financial challenge.
+
+Traditional machine learning workflows often struggle with:
+- Extremely imbalanced fraud distributions
+- Large-scale transaction volumes
+- Computational limitations
+- High false-positive costs
+
+This project addresses these challenges by combining distributed computing with machine learning models designed for fraud-sensitive prediction.
+
+The objective is to:
+- Detect fraudulent transactions effectively
+- Minimise missed fraud cases
+- Maintain scalability for large datasets
+- Support operational fraud monitoring systems
+
+---
+
+# 📂 Dataset
+
+**Source:** Credit Card Fraud Detection Dataset — Kaggle  
+Dataset Link: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+
+## Dataset Characteristics
 - ~284,807 transactions
 - ~492 fraud cases (~0.17%)
-- Highly imbalanced dataset
-- 28 anonymised features (V1–V28 from PCA)
-- Additional features: Time, Amount, Class
+- Highly imbalanced classification problem
+- PCA-transformed anonymised features (`V1–V28`)
+- Additional features:
+  - `Time`
+  - `Amount`
+  - `Class`
 
 ---
 
-## Technologies Used
+# 🛠 Technologies Used
 
-- Hadoop HDFS (distributed storage)
-- Apache Spark (distributed processing)
-- PySpark (implementation)
-- Spark MLlib (machine learning models)
-- Spark ML tuning tools (CrossValidator and ParamGridBuilder)
-- Pandas (results summarisation)
+## Big Data & Distributed Systems
+- Apache Spark
+- PySpark
+- Hadoop HDFS
+- Spark MLlib
+
+## Machine Learning & Analytics
+- Logistic Regression
+- Random Forest
+- Gradient Boosted Trees (GBT)
+- CrossValidator
+- ParamGridBuilder
+
+## Data Processing
+- Pandas
+- NumPy
 
 ---
 
-## Project Structure
+# 🧹 Data Engineering & Preprocessing
 
+The pipeline includes:
+- Distributed dataset loading from HDFS
+- Missing value inspection
+- Feature engineering:
+  - Log transformation of transaction amount
+  - Extraction of transaction hour from timestamp
+- Feature vector construction using `VectorAssembler`
+- Standard scaling for Logistic Regression
+- Stratified train–test splitting
+- Class imbalance handling using weighted learning
+
+---
+
+# 🤖 Machine Learning Models
+
+The following models were trained and evaluated using Spark MLlib:
+
+| Model | Purpose |
+|---|---|
+| Logistic Regression | Interpretable baseline model |
+| Random Forest | Ensemble learning for non-linear fraud patterns |
+| Gradient Boosted Trees | Boosted ensemble optimisation |
+
+## Additional Techniques
+- Hyperparameter tuning
+- Cross-validation
+- Threshold optimisation
+- Fraud-specific metric evaluation
+
+---
+
+# 📈 Evaluation Strategy
+
+Because fraud detection is highly imbalanced, accuracy alone was not considered reliable.
+
+Instead, evaluation focused on:
+
+- **PR-AUC (Primary Metric)**  
+- ROC-AUC  
+- Precision  
+- Recall  
+- F1-score  
+- Fraud Precision  
+- Fraud Recall  
+- Fraud F1-score  
+
+Fraud-specific confusion matrix metrics were also computed:
+- True Positives (TP)
+- False Positives (FP)
+- False Negatives (FN)
+- True Negatives (TN)
+
+This evaluation strategy better reflects real-world fraud detection trade-offs.
+
+---
+
+# 🏆 Key Results
+
+## Key Findings
+- Ensemble models significantly outperformed baseline Logistic Regression
+- Random Forest produced the strongest overall fraud detection performance
+- Threshold tuning improved fraud recall but increased false positives
+- PR-AUC proved more informative than accuracy in imbalanced settings
+- Feature scaling improved Logistic Regression performance
+- Distributed Spark workflows enabled scalable processing efficiency
+
+---
+
+# 🔍 Feature Insights
+
+Important fraud-related signals included:
+- Transaction amount behaviour
+- Temporal transaction patterns
+- PCA-derived transactional relationships
+
+Feature importance analysis and Logistic Regression coefficient analysis were exported for interpretability.
+
+---
+
+# ⚡ Scalability & Distributed Architecture
+
+This project was designed with scalability in mind.
+
+## Distributed Components
+- **HDFS** for distributed data storage
+- **Spark** for parallel data processing
+- **Spark MLlib** for scalable machine learning
+
+This architecture enables the pipeline to scale beyond local-memory limitations and better reflects enterprise-level financial analytics systems.
+
+---
+
+# 📁 Project Structure
+
+```bash
 fraud_detection_project/
 
 ├── fraud_detection_pyspark.ipynb
@@ -46,151 +182,90 @@ fraud_detection_project/
 ├── fraud_model_comparison.csv
 ├── rf_feature_importance.csv
 ├── lr_coefficients.csv
-└── component1_report.pdf
-└── component2_report.pdf
+├── component1_report.pdf
+├── component2_report.pdf
 └── component3_report.pdf
+```
 
 ---
 
-## Data Storage (HDFS)
+# ▶️ Running the Project
 
-The dataset is stored in HDFS at:
+## Upload Dataset to HDFS
 
-hdfs:///user/jadju001/fraud_detection/creditcard.csv
-
-### Uploading Dataset to HDFS
-
+```bash
 hdfs dfs -mkdir -p /user/jadju001/fraud_detection
+
 hdfs dfs -put creditcard.csv /user/jadju001/fraud_detection/
+```
 
-### Verify Upload
+## Verify Upload
 
+```bash
 hdfs dfs -ls /user/jadju001/fraud_detection/
+```
 
----
+## Execute the Pipeline
 
-## How to Run the Project
-
-1. Ensure Spark is available on the university cluster environment.
-
-2. Execute the script:
-
+```bash
 spark-submit fraud_detection_pyspark.py
+```
 
-The code may also be run in a JupyterHub environment configured with PySpark.
-
----
-
-## Optional: Run on Smaller Subset
-
-If execution time is high, modify the data loading step:
-
-df = spark.read.csv(...).limit(50000)
-
-This allows the examiners to test the pipeline more quickly while preserving the structure of the workflow.
+The notebook can also be executed within a configured JupyterHub PySpark environment.
 
 ---
 
-## Implementation Workflow
+# 📤 Outputs
 
-The project follows a structured pipeline:
+## HDFS Outputs
+Predictions saved to:
 
-1. Load the dataset from HDFS into a Spark DataFrame
-2. Perform data inspection and missing value checks
-3. Conduct exploratory data analysis
-4. Apply feature engineering:
-   - Log transformation of Amount
-   - Extraction of Hour from Time
-5. Prepare features using VectorAssembler
-6. Apply StandardScaler for Logistic Regression only
-7. Split data into training and testing sets
-8. Handle class imbalance using class weighting
-9. Train machine learning models:
-   - Logistic Regression (scaled features)
-   - Random Forest (unscaled features)
-   - Gradient Boosted Trees (unscaled features)
-10. Apply hyperparameter tuning and cross-validation to Random Forest
-11. Evaluate models using:
-   - ROC-AUC
-   - PR-AUC
-   - F1-score
-   - Precision and Recall
-12. Compute fraud-specific metrics:
-   - True Positives (TP), False Positives (FP)
-   - False Negatives (FN), True Negatives (TN)
-   - Fraud Precision, Fraud Recall, Fraud F1
-13. Perform threshold tuning for Logistic Regression
-14. Analyse feature importance
-15. Save predictions and summary outputs
-
----
-
-## Outputs
-
-### HDFS Outputs
-
-Predictions are saved to:
-
+```bash
 hdfs:///user/jadju001/fraud_detection/output/
+```
 
-Includes:
-- Logistic Regression predictions
-- Random Forest predictions
-- Gradient Boosted Trees predictions
-- Threshold-tuned Logistic Regression predictions
-
-### Local Outputs (Cluster)
-
-- fraud_model_comparison.csv
-- rf_feature_importance.csv
-- lr_coefficients.csv
+## Generated Files
+- `fraud_model_comparison.csv`
+- `rf_feature_importance.csv`
+- `lr_coefficients.csv`
 
 ---
 
-## Key Insights
+# ⚠️ Limitations
 
-- Fraud detection is a highly imbalanced classification problem
-- PR-AUC and fraud-specific metrics are more meaningful than accuracy
-- Ensemble models outperform Logistic Regression for fraud detection
-- Threshold tuning increases fraud recall but significantly increases false positives
-- Feature scaling improves Logistic Regression preprocessing
-- Cross-validation and hyperparameter tuning improve the robustness of Random Forest
-- Spark enables scalable processing for large datasets
+- Severe class imbalance remains challenging
+- Threshold tuning introduces operational trade-offs
+- Dataset anonymisation limits feature interpretability
+- Real-time streaming fraud detection was not implemented
 
 ---
 
-## Scalability
+# 🚀 Future Improvements
 
-The project uses:
-
-- HDFS for distributed data storage
-- Spark for parallel data processing
-
-This architecture allows the pipeline to scale to significantly larger datasets, making it suitable for real-world financial systems.
-
----
-
-## Reproducibility
-
-To reproduce the results:
-
-1. Upload the dataset to HDFS
-2. Run the PySpark script
-3. Ensure the Spark environment is configured correctly
-
-All steps from data loading to model evaluation are included in the script.
+Potential extensions include:
+- Real-time fraud detection with Spark Streaming
+- SMOTE or advanced imbalance techniques
+- Cost-sensitive learning
+- Explainable AI integration (SHAP/LIME)
+- Deployment using cloud-based distributed environments
 
 ---
 
-## Author
+# 🧠 Business Impact
 
-Uvietobore Joshua Adjugah
-MSc Data Science & Artificial Intelligence FT
+This project demonstrates how distributed machine learning systems can support:
+- Fraud risk reduction
+- Operational efficiency
+- Scalable financial analytics
+- Decision-support systems for financial institutions
+
+It also highlights the importance of aligning machine learning evaluation with real-world fraud costs rather than relying on accuracy alone.
 
 ---
 
-## Notes
+# 👤 Author
 
-- Ensure the dataset is uploaded to HDFS before running
-- Update HDFS paths if using a different username
-- Results are reproducible using the provided script
+**Uvietobore Joshua Adjugah**  
+MSc Data Science & Artificial Intelligence  
+Goldsmiths, University of London  
+London, UK
